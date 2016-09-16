@@ -1,0 +1,30 @@
+<html>
+	<head>
+    <sly data-sly-test="${wcmmode.edit}" >
+    	<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.all @ categories= 'training.edit'}" />
+    </sly>
+		<title>Hello World!</title>
+	</head>
+	<body>
+        <div class="body_header header container_16">
+
+    <div class="header_logo grid_8">logo</div>
+
+    <div class="header_topnav grid_8 search_area">
+
+        <div>toptoolbar</div>
+
+    </div>
+
+
+
+    <div class="content_topnav toptoolbar toolbar" data-sly-resource="${ @ resourceType='training/components/topnav'}">
+
+    </div>
+
+</div>
+		<h1>Hello world!</h1>
+		<h2>I’m your rendering script!!</h2>
+    <h3>Your WCM mode is ${wcmmode.toString}</h3>
+</body>
+</html>

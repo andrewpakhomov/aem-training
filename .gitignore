@@ -1,0 +1,11 @@
+#maven part
+target/
+
+
+#netbeans part
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
