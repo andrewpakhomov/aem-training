@@ -18,7 +18,7 @@ class ReplaceJsonContentRule extends AbstractReplaceContentRule{
     public ReplaceJsonContentRule(String replaceFrom, String replaceTo) {
         super(replaceFrom, replaceTo);
         //dont change inside resource urls
-        this.pattern = Pattern.compile(".*("+REPLACE_GROUP_NAME_DECLARATION+this.replaceFrom+").*", Pattern.CASE_INSENSITIVE);
+        this.pattern = Pattern.compile(":[^/]*("+REPLACE_GROUP_NAME_DECLARATION+this.replaceFrom+")(?!(\\?[a-zA-Z]+=)|(/))", Pattern.CASE_INSENSITIVE);
     }
 
     

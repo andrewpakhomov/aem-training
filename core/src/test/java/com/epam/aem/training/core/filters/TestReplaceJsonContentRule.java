@@ -38,6 +38,29 @@ public class TestReplaceJsonContentRule {
         testData.add(new Object[]{
                 "{key:\" some text 1 "+BEFORE_REPLACEMENT+" some other text 2\"}"
                 ,"{key:\" some text 1 "+AFTER_REPLACEMENT+" some other text 2\"}"});
+        
+        //Checking question '?' sign in regulaer non url expressions
+        testData.add(new Object[]{
+                "{key:\" some text 1 "+BEFORE_REPLACEMENT+" some other text 2? No!\"}"
+                ,"{key:\" some text 1 "+AFTER_REPLACEMENT+" some other text 2? No!\"}"});
+         
+        //must not replace urls
+        testData.add(new Object[]{
+                "{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"\"}"
+                ,"{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"\"}"});
+        testData.add(new Object[]{
+                "{url: value: \""+"/path1/test"+BEFORE_REPLACEMENT+"\"}"
+                ,"{url: value: \""+"/path1/test"+BEFORE_REPLACEMENT+"\"}"});
+        testData.add(new Object[]{
+                "{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"/\"}"
+                ,"{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"/\"}"});
+        testData.add(new Object[]{
+                "{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"/a.html?b=c\"}"
+                ,"{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"/a.html?b=c\"}"});
+        testData.add(new Object[]{
+                "{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"?b=c\"}"
+                ,"{url: value: \""+"/path1/"+BEFORE_REPLACEMENT+"?b=c\"}"});
+        
         return testData;
     }
     
