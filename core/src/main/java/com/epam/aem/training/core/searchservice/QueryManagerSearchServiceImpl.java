@@ -22,7 +22,7 @@ import org.osgi.service.log.LogService;
  * @author Andrey_Pakhomov
  */
 final class QueryManagerSearchServiceImpl extends AbstractSearchService {
-    private final String QUERY_STRING_TEMPLATE = "SELECT * from [nt:base] as allnodes where ISDESCENDANTNODE(allnodes, \"1%s\") and CONTAINS ( allnodes.*, \"2%s\")";
+    private final String QUERY_STRING_TEMPLATE = "SELECT * from [nt:base] as allnodes where ISDESCENDANTNODE(allnodes, \"%1s\") and CONTAINS ( allnodes.*, \"%2s\")";
 
     public QueryManagerSearchServiceImpl(List<String> searchLocation, String searchString, ResourceResolver resolver, LogService logService) {
         super(searchLocation, searchString, resolver, logService);
@@ -35,7 +35,7 @@ final class QueryManagerSearchServiceImpl extends AbstractSearchService {
         final List<Node> nodes = new LinkedList<>();
         for (String searchLocation : this.searchLocations) {
             String queryString = String.format(QUERY_STRING_TEMPLATE, searchLocation, this.searchString);
-//            this.logService.log(LogService.LOG_DEBUG, "Executing query via QueryManager: "+queryString);
+            this.logService.log(LogService.LOG_DEBUG, "Executing query via QueryManager: "+queryString);
             Query query = queryManager.createQuery(queryString, "JCR-SQL2");
             QueryResult queryResult = query.execute();
             NodeIterator it = queryResult.getNodes();

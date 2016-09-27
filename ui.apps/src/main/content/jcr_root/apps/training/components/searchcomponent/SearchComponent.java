@@ -6,10 +6,10 @@
 package apps.training.components.searchcomponent;
 
 import com.epam.aem.training.core.searchservice.SearchApiType;
-import com.epam.aem.training.core.searchservice.SearchServiceFactory;
 import com.epam.aem.training.core.searchservice.SearchResultViewModel;
 import com.adobe.cq.sightly.WCMUse;
 import com.epam.aem.training.core.searchservice.AbstractSearchService;
+import com.epam.aem.training.core.searchservice.SearchServiceFactory;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.sling.api.resource.Resource;

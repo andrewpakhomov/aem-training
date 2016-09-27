@@ -43,6 +43,7 @@ final class QueryBuilderSearchServiceImpl extends AbstractSearchService {
             searchParams.put(PATH_KEY, searchLocation);
             searchParams.put(TYPE_KEY, "[nt:base]");
             searchParams.put(FULLTEXT_KEY, this.searchString);
+            this.logService.log(LogService.LOG_INFO, "Executing query via query builder: " + searchParams.toString());
             final Query query = queryBuilder.createQuery(PredicateGroup.create(searchParams), session);
             final SearchResult searchResult = query.getResult();
             List<Hit> hits = searchResult.getHits();
