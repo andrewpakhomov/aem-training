@@ -7,4 +7,5 @@
     <filter root="/etc/designs/training"/>
     <filter root="/etc/packages/adobe/consulting/acs-aem-commons-content-2.7.0.zip" />
     <filter root="/etc/clientlibs/training"/>
+    <filter root="/oak:index/myIndex"/>
 </workspaceFilter>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="nt:unstructured">
+    <myIndex
+        jcr:primaryType="oak:QueryIndexDefinition"
+        asynce="async"
+        codec="Lucene46"
+        compatVersion="{Long}2"
+        includedPaths="[/content/dam]"
+        path="/d/lucene"
+        persistence="file"
+        queryPaths="[/content/dam]"
+        reindex="{Boolean}false"
+        reindexCount="{Long}27"
+        type="lucene">
+        <aggregates jcr:primaryType="nt:unstructured">
+            <nt:base jcr:primaryType="nt:unstructured">
+                <include0
+                    jcr:primaryType="nt:unstructured"
+                    path="jcr:content/renditions/original/jcr:content"
+                    relativeNode="{Boolean}true"/>
+            </nt:base>
+        </aggregates>
+        <analyzers jcr:primaryType="nt:unstructured"/>
+        <indexRules jcr:primaryType="nt:unstructured">
+            <nt:base
+                jcr:primaryType="nt:unstructured"
+                includePropertyTypes="all"
+                reaggregateLimit="{Long}0">
+                <properties jcr:primaryType="nt:unstructured">
+                    <binary
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        name="jcr:data"
+                        nodeScopeIndex="{Boolean}true"
+                        propertyIndex="{Boolean}false"
+                        type="Binary"/>
+                </properties>
+            </nt:base>
+        </indexRules>
+    </myIndex>
+</jcr:root>

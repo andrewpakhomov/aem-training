@@ -5,27 +5,20 @@
     <h1>My search component</h1>
 
 </div>
-<script type="text/css">
-        .reportOptions:{
-             width: 33.3%; 
-            float: left;
-            }
-</script>
-<div id="result-box">
+<div>
     <div>
-        <div class="reportOptions">
+        <div>
             <h3>Search paths:</h3>
             <ul data-sly-list="${this.searchPaths}">
                 <li><a href="${item}">${item}</a></li>
             </ul>
         </div>
-        <div class="reportOptions">
+        <div class>
             <h3>Search text:<span>${this.searchText}</span></h3>
         </div>
-        <div class="reportOptions">
+        <div class>
             <h3>Search API used:<span>${this.searchApiType}</span></h3>
         </div>
-        <br style="float: clear;">
     </div>
     <table>
         <thead>

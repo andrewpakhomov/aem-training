@@ -11,7 +11,10 @@ import com.adobe.cq.sightly.WCMUse;
 import com.epam.aem.training.core.searchservice.AbstractSearchService;
 import com.epam.aem.training.core.searchservice.SearchServiceFactory;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.commons.osgi.PropertiesUtil;
@@ -22,22 +25,26 @@ import org.apache.sling.commons.osgi.PropertiesUtil;
  */
 public class SearchComponent extends WCMUse{
     
+    private final static Map<SearchApiType,String> searchApiTypeToStringMapper = new EnumMap<SearchApiType, String>(SearchApiType.class);
     
-    
-    private final static String mapApiTypeToPropertyValue(SearchApiType apiType){
-        if (apiType == null) return "";
-        switch (apiType){
-            case QUERY_BUILDER_API: return "qb";
-            case QUERY_MANAGER: return "qm";
-        }
-        return "";
+    static{
+        searchApiTypeToStringMapper.put(SearchApiType.QUERY_MANAGER, "qm");
+        searchApiTypeToStringMapper.put(SearchApiType.QUERY_BUILDER_API, "qb");
     }
     
-    private final static SearchApiType mapPropertyValueToApiType(String value){
-        switch(value){
-            case "qb": return SearchApiType.QUERY_BUILDER_API;
-            case "qm": return SearchApiType.QUERY_MANAGER;
+    private static String mapApiTypeToPropertyValue(SearchApiType apiType){
+        for (Map.Entry<SearchApiType, String> current : searchApiTypeToStringMapper.entrySet()){
+            if (Objects.equals(apiType, current.getKey())) return current.getValue();
         }
+        //default
+        return "qm";
+    }
+    
+    private static SearchApiType mapPropertyValueToApiType(String value){
+        for (Map.Entry<SearchApiType, String> current : searchApiTypeToStringMapper.entrySet()){
+            if (Objects.equals(value, current.getValue())) return current.getKey();
+        }
+        //default;
         return SearchApiType.QUERY_BUILDER_API;
     }
     
