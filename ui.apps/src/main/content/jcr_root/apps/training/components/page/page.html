@@ -1,3 +1,5 @@
+<!--<sly data-sly-include="/libs/foundation/global.jsp"/>
+<sly data-sly-include="/libs/wcm/core/components/init/init.jsp"/> -->
 <html>
 	<head>
     <sly data-sly-test="${wcmmode.edit}" >
@@ -21,6 +23,8 @@
     <div class="content_topnav toptoolbar toolbar" data-sly-resource="${ @ resourceType='training/components/topnav'}">
 
     </div>
+    <!--including parsys  -->
+    <div data-sly-resource="${'content' @ resourceType='wcm/foundation/components/parsys'}"></div>
 
 </div>
 		<h1>Hello world!</h1>

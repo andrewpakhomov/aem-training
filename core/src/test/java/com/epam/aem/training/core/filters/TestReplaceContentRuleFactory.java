@@ -5,11 +5,6 @@
  */
 package com.epam.aem.training.core.filters;
 
-import com.epam.aem.training.core.filters.ReplaceHtmlContentRule;
-import com.epam.aem.training.core.filters.ReplaceJsonContentRule;
-import com.epam.aem.training.core.filters.NullReplaceContentRule;
-import com.epam.aem.training.core.filters.AbstractReplaceContentRule;
-import com.epam.aem.training.core.filters.ReplaceContentRuleFactory;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
