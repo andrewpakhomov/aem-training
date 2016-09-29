@@ -5,10 +5,7 @@
  */
 package com.epam.aem.training.core.searchservice;
 
-import java.util.LinkedList;
 import java.util.List;
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
