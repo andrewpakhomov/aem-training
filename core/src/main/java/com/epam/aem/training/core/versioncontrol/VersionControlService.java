@@ -5,6 +5,7 @@
  */
 package com.epam.aem.training.core.versioncontrol;
 
+import com.epam.aem.training.core.versioncontrol.pagerevision.PageRevisionMaker;
 import java.util.Map;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -25,7 +26,7 @@ import org.osgi.service.log.LogService;
  * @author Andrey_Pakhomov
  */
 @Component(immediate = true, metatype = true, label = "PageRevisionControlService", description = "Component that listen for page updates under specific directory and ...")
-public class PageVersionControlService{
+public class VersionControlService{
     
     
     private final static String NODE_ABSOLUTE_PATH_PROPERTIES_KEY  = "pageversioncontrol.absolutepath";

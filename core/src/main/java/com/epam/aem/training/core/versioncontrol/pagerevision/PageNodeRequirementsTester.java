@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.epam.aem.training.core.versioncontrol;
+package com.epam.aem.training.core.versioncontrol.pagerevision;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +17,7 @@ import org.osgi.service.log.LogService;
  *
  * @author Andrey_Pakhomov
  */
-public class PageNodeRequirementsTester{
+class PageNodeRequirementsTester{
     
     private final String rootOfObservedTreePath;
    
@@ -26,13 +26,13 @@ public class PageNodeRequirementsTester{
     private final Pattern pageLevelTester;
    
     
-    public PageNodeRequirementsTester(LogService logService, String rootOfObservedTreePath) {
+    PageNodeRequirementsTester(LogService logService, String rootOfObservedTreePath) {
         this.logService = logService;
         this.rootOfObservedTreePath = rootOfObservedTreePath;
         this.pageLevelTester = Pattern.compile(this.rootOfObservedTreePath + "/" + "[^/]+", Pattern.CASE_INSENSITIVE);
     }
 
-    public boolean test(Node node) throws RepositoryException {
+    boolean test(Node node) throws RepositoryException {
          boolean isPageMatchPathConditions = checkIfPagePathMatchesProcessConditions(node);
          boolean isPagePropertiesMatchProcessConditions = checkIfPagePropertiesMatchProcessConditions(node);
          boolean testResult = isPageMatchPathConditions && isPagePropertiesMatchProcessConditions;

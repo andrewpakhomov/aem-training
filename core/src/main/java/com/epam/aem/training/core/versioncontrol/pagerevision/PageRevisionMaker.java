@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.epam.aem.training.core.versioncontrol;
+package com.epam.aem.training.core.versioncontrol.pagerevision;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +35,7 @@ public class PageRevisionMaker implements EventListener {
 
     private final static String PAGE_NODE_TYPE = "cq:Page";
 
-    public final static int EVENT_TYPE_FILTER = Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED;
+    public final static int EVENT_TYPE_FILTER = Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED | Event.NODE_ADDED | Event.NODE_REMOVED;
 
     private final VersionManager versionManager;
     private final Session session;
@@ -67,7 +67,8 @@ public class PageRevisionMaker implements EventListener {
             @Override
             public void accept(Event t) {
                 try {
-                    Node affectedPage = getAffectedPageNode(t.getPath());
+                    boolean isEventSourceRemoved = t.getType() == Event.NODE_REMOVED || t.getType() == Event.PROPERTY_REMOVED;
+                    Node affectedPage = getAffectedPageNode(t.getPath(), isEventSourceRemoved);
                     if (affectedPage != null) {
 
                         String pagePath = affectedPage.getPath();
@@ -111,9 +112,11 @@ public class PageRevisionMaker implements EventListener {
      * @return cq:Page ancestor of node, or null if it was not found
      * @throws RepositoryException
      */
-    private Node getAffectedPageNode(String chnagedNodeAbsPath) throws RepositoryException {
+    private Node getAffectedPageNode(String chnagedNodeAbsPath, boolean isPathRemoved) throws RepositoryException {
         final Node NO_AFFECTED_PAGE_RETURN_VALUE = null;
-        //Never returns property by eventListener contract https://docs.adobe.com/docs/en/spec/jsr170/javadocs/jcr-1.0/javax/jcr/observation/ObservationManager.html
+        if (isPathRemoved){
+            chnagedNodeAbsPath = chnagedNodeAbsPath.substring(0, chnagedNodeAbsPath.lastIndexOf("/"));
+        }
         Item item = this.session.getItem(chnagedNodeAbsPath);
         Item currentAncestor = item;
         do {
